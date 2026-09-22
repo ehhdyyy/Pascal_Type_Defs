@@ -15,6 +15,8 @@ public class SemanticErrorHandler
         INVALID_SUBRANGE_CONSTANT  ("Invalid subrange constant"),
         INVALID_INDEX_TYPE         ("Index type must be ordinal"),
         INVALID_PACKED_ARRAY       ("Can only pack arrays of char"),
+        INVALID_PACKED_SET         ("Can only pack sets of ordinal types"),
+        INVALID_SET_TYPE_BASE      ("Set base type must be ordinal"),
         ;
         
         private String message;

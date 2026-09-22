@@ -283,4 +283,45 @@ public class TypeDefinitions_P2 extends Semantics_P2
             return Predefined.undefinedType;
         }
     }
+
+    Typespec_P2 setType(SetTypeContext ctx)
+    {
+        boolean isPacked = ctx.PACKED() != null;
+        SetTypeBaseContext baseTypeCtx = ctx.setTypeBase();
+        Typespec_P2 baseTypespec = (Typespec_P2) visit(baseTypeCtx);
+
+        if(!baseTypespec.isOrdinal())
+        {
+            if(isPacked)
+            {
+                error.flag(INVALID_PACKED_SET, baseTypeCtx);
+            }
+            else
+            {
+                error.flag(INVALID_SET_TYPE_BASE, baseTypeCtx);
+            }
+            baseTypespec = Predefined.booleanType;
+        }
+
+        Typespec_P2 setTypespec = new Typespec_P2(SET);
+        setTypespec.setSetBaseType(baseTypespec);
+        return setTypespec;
+
+    }
+
+    private Typespec_P2 packedSet(SetTypeContext ctx)
+    {
+        SetTypeBaseContext baseTypeCtx = ctx.setTypeBase();
+        Typespec_P2 baseTypespec = (Typespec_P2) visit(baseTypeCtx);
+
+        if (!baseTypespec.isOrdinal())
+        {
+            error.flag(INVALID_PACKED_SET, baseTypeCtx);
+            baseTypespec = Predefined.booleanType;
+        }
+        Typespec_P2 setTypespec = new Typespec_P2(SET);
+        setTypespec.setSetBaseType(baseTypespec);
+        
+        return setTypespec;
+    }
 }
