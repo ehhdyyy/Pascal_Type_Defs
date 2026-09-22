@@ -119,8 +119,44 @@ public class VariableDeclarations_P2 extends Converter_P2
                 {
                     return "int";
                 }
-                
+            
+            case SET:
+                Typespec_P2 setBaseType = pascalType.getSetBaseType();
+
+                String elementTypeName = getSetElementTypeName(setBaseType);
+                return "Set<" + elementTypeName + ">";
+
             default: return "*unknown*";
+        }
+    }
+
+    private String getSetElementTypeName(Typespec_P2 pascalType)
+    {
+        Form form = pascalType.getForm();
+
+        if (form == Typespec_P2.Form.SUBRANGE)
+        {
+            return getSetElementTypeName(pascalType.baseType());
+        }
+
+        switch (form)
+        {
+            case SCALAR:
+                String pascalTypeName = pascalType.getIdentifier().getName();
+                switch (pascalTypeName)
+                {
+                    case "boolean": return "Boolean";
+                    case "char":    return "Character";
+                    case "integer": return "Integer";
+                    case "real":    return "Double";    
+                    default:        return pascalTypeName;
+                }
+
+            case ENUMERATED:
+                return pascalType.baseType().getIdentifier().getName();
+            
+            default:
+                return "Object";
         }
     }
 }

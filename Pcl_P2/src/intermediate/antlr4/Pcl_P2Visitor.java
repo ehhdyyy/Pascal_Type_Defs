@@ -1,4 +1,4 @@
-// Generated from Pcl_P2.g4 by ANTLR 4.13.2
+// Generated from ./Pcl_P2.g4 by ANTLR 4.13.2
 
     package intermediate.antlr4;
     
@@ -189,6 +189,18 @@ public interface Pcl_P2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitArrayType(Pcl_P2Parser.ArrayTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl_P2Parser#setType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSetType(Pcl_P2Parser.SetTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Pcl_P2Parser#setTypeBase}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSetTypeBase(Pcl_P2Parser.SetTypeBaseContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Pcl_P2Parser#dimensionList}.
 	 * @param ctx the parse tree

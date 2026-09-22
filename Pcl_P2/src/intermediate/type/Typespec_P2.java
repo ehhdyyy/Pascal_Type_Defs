@@ -9,7 +9,7 @@ public class Typespec_P2
 {
     public enum Form
     {
-        SCALAR, ENUMERATED, SUBRANGE, STRING, ARRAY, RECORD, UNKNOWN;
+        SCALAR, ENUMERATED, SUBRANGE, STRING, ARRAY, SET, RECORD, UNKNOWN;
 
         public String toString() { return super.toString().toLowerCase(); }
     }
@@ -33,6 +33,11 @@ public class Typespec_P2
         private Typespec_P2 indexType;
         private Typespec_P2 elementType;
         private int elementCount;
+    }
+
+    private class SetInfo implements TypeInfo
+    {
+        private Typespec_P2 baseType;
     }
     
     private Form form;
@@ -64,6 +69,11 @@ public class Typespec_P2
                 ((ArrayInfo) info).indexType = null;
                 ((ArrayInfo) info).elementType = null;
                 ((ArrayInfo) info).elementCount = 0;
+                break;
+            
+            case SET:
+                info = new SetInfo();
+                ((SetInfo) info).baseType = null;
                 break;
                 
             default: break;
@@ -176,4 +186,16 @@ public class Typespec_P2
     {
         ((ArrayInfo) info).elementCount = elementCount;
     }
+
+    public Typespec_P2 getSetBaseType()
+    {
+        return info != null ? ((SetInfo) info).baseType
+                            : Predefined.undefinedType;
+    }
+
+    public void setSetBaseType(Typespec_P2 baseType)
+    {
+        ((SetInfo) info).baseType = baseType;
+    }
+
 }

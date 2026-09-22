@@ -97,6 +97,7 @@ ordinalType           locals [ Typespec_P2 typespec = null ]
 structuredType        locals [ Typespec_P2 typespec = null ]
     : arrayType 
     | recordType
+    | setType
     ;
 
 enumeratedType        locals [ Typespec_P2 typespec = null ] 
@@ -107,6 +108,14 @@ subrangeType          locals [ Typespec_P2 typespec = null ]
 
 arrayType             locals [ Typespec_P2 typespec = null ] 
     : PACKED? ARRAY '[' dimensionList ']' OF elmtType ;
+
+setType               locals [ Typespec_P2 typeSpec = null]
+    : PACKED? SET OF setTypeBase ;
+
+setTypeBase
+    :   typeIdentifier
+    |   ordinalType
+    ;
     
 dimensionList : indexType ( ',' indexType )* ;
 indexType     : typeIdentifier | ordinalType ;
@@ -128,6 +137,7 @@ CONST     : C O N S T ;
 TYPE      : T Y P E ;
 PACKED    : P A C K E D ;
 ARRAY     : A R R A Y ;
+SET       : S E T ;
 OF        : O F ;
 RECORD    : R E C O R D ;
 VAR       : V A R ;
