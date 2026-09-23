@@ -72,6 +72,11 @@ public class Typespec_P2
                 ((ArrayInfo) info).elementType = null;
                 ((ArrayInfo) info).elementCount = 0;
                 break;
+            
+            case HASHTABLE:
+                info = new HashTableInfo();
+                ((HashTableInfo) info).keyType = null;
+                ((HashTableInfo) info).valueType = null;
                 
             default: break;
         }
