@@ -6,6 +6,7 @@ public class ProgramDeclarations_P2 extends Converter_P2
 {
     Object program(ProgramContext ctx)
     {
+        code.emitLine("import java.util.*;");
         code.emitLine("public class " + programName);
         code.emitLine("{");
         code.indent();
