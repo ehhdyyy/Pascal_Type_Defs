@@ -23,7 +23,7 @@ VAR
 
     uh1 : HASHTABLE <(JAN, FEB, MAR, APR), integer>;
     uh2 : HASHTABLE <String, integer>;
-    uh3 : HASHTABLE <String, (1, 2, 3, 4)>;
+    uh3 : HASHTABLE <String, 1..4>;
                 
 BEGIN
 END.
