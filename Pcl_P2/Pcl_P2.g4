@@ -124,8 +124,10 @@ variableIdentifierList : identifier ( ',' identifier )* ;
     
 procedureAndFunctionsPart : /* empty */ ;
 
-hashtableType locals [ Typespec_P2 typespec = null ] 
-    : HASHTABLE '[' dimensionList ']' OF elmtType /*TODO*/;
+//hashtableType locals [ Typespec_P2 typespec = null ]
+//    : HASHTABLE '[' dimensionList ']' OF elmtType /*TODO*/;
+
+hashtableType locals [Typespec_P2 typespec = null] : HASHTABLE '<' elmtType ',' elmtType '>' ;
 
 PROGRAM   : P R O G R A M ;
 CONST     : C O N S T ;
