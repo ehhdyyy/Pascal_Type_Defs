@@ -34,6 +34,13 @@ public class Semantics_P2 extends Pcl_P2BaseVisitor<Object>
     public Symtab getSymtab()  { return symtab; }
     public int getErrorCount() { return error.getCount(); }
 
+    @Override
+    public Object visitHashtableType (HashtableTypeContext ctx) {
+        visit(ctx.indexType());
+        visit(ctx.elmtType());
+        return null;
+    }
+
     @Override 
     public Object visitProgram(ProgramContext ctx) 
     { 
