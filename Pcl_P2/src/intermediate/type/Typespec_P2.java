@@ -9,7 +9,7 @@ public class Typespec_P2
 {
     public enum Form
     {
-        SCALAR, ENUMERATED, SUBRANGE, STRING, ARRAY, RECORD, UNKNOWN;
+        SCALAR, ENUMERATED, SUBRANGE, STRING, ARRAY, RECORD, UNKNOWN, HASHTABLE;
 
         public String toString() { return super.toString().toLowerCase(); }
     }
@@ -33,6 +33,13 @@ public class Typespec_P2
         private Typespec_P2 indexType;
         private Typespec_P2 elementType;
         private int elementCount;
+    }
+
+    private class HashTableInfo implements TypeInfo
+    {
+        private Typespec_P2 keyType;
+        private Typespec_P2 valueType;
+        //TODO
     }
     
     private Form form;
