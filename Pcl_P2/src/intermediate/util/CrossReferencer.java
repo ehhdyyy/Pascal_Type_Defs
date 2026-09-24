@@ -228,6 +228,37 @@ public class CrossReferencer
 
                 break;
             }
+
+//            case HASHTABLE: {
+//                Object keytype = typespec.getHashtableKeyType();
+//                Object valtype = typespec.getHashtableValueType();
+//                System.out.println (INDENT + "--- hashtable type ---");
+//                printTypespec(typespec.baseType());
+//                System.out.println (INDENT + keytype.toString() + " ," + valtype.toString());
+//                break;
+//            }
+            case HASHTABLE: {
+                Typespec_P2 keyType = typespec.getHashtableKeyType();
+                Typespec_P2 elementType = typespec.getHashtableValueType();
+
+                System.out.println(INDENT + "--- KEY TYPE ---");
+                printTypespec(keyType);
+
+                if (keyType.getIdentifier() == null)
+                {
+                    printTypespecDetail(keyType);
+                }
+
+                System.out.println(INDENT + "--- ELEMENT TYPE ---");
+                printTypespec(elementType);
+
+                if (elementType.getIdentifier() == null)
+                {
+                    printTypespecDetail(elementType);
+                }
+
+                break;
+            }
             
             default: break;
         }

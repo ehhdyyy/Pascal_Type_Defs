@@ -39,6 +39,9 @@ public class VariableDeclarations_P2 extends Converter_P2
             
             if (typeForm == ARRAY) array(typespecCtx);
 
+            if (typeForm == HASHTABLE)
+                code.emit(" = new HashMap<>()");
+
             separator = ", ";
         }
 
@@ -119,6 +122,10 @@ public class VariableDeclarations_P2 extends Converter_P2
                 {
                     return "int";
                 }
+
+
+            case HASHTABLE:
+                return "HashMap<" + boxedJavaType(pascalType.getHashtableKeyType()) + ", " + boxedJavaType(pascalType.getHashtableValueType()) + ">";
             
             case SET:
                 Typespec_P2 setBaseType = pascalType.getSetBaseType();
@@ -128,6 +135,20 @@ public class VariableDeclarations_P2 extends Converter_P2
 
             default: return "*unknown*";
         }
+    }
+
+    private String boxedJavaType(Typespec_P2 t)
+    {
+        if (t.getForm() == HASHTABLE)
+        {
+            return javaTypeName(t);
+        }
+        String name = javaTypeName(t);
+        if ("int".equals(name))     return "Integer";
+        if ("boolean".equals(name)) return "Boolean";
+        if ("char".equals(name))    return "Character";
+        if ("double".equals(name))  return "Double";
+        return name;
     }
 
     private String getSetElementTypeName(Typespec_P2 pascalType)
