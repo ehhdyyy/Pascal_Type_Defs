@@ -188,4 +188,18 @@ public class Typespec_P2
     {
         ((ArrayInfo) info).elementCount = elementCount;
     }
+
+    public Typespec_P2 getHashtableKeyType() {
+        return ((HashTableInfo) info).keyType;
+    }
+    public void setHashtableKeyType(Typespec_P2 keyType) {
+        ((HashTableInfo) info).keyType = keyType;
+    }
+    public Typespec_P2 getHashtableValueType() {
+        return info != null ? ((HashTableInfo) info).valueType : Predefined.undefinedType;
+    }
+
+    public void setHashtableValueType(Typespec_P2 valueType) {
+        ((HashTableInfo) info).valueType = valueType;
+    }
 }

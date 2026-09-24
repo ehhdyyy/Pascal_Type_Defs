@@ -126,6 +126,11 @@ public class Semantics_P2 extends Pcl_P2BaseVisitor<Object>
         return typeDefinitions.subrangeType(ctx);
     }
 
+    @Override
+    public Object visitHashtableType(HashtableTypeContext ctx) {
+        return typeDefinitions.hashtableType(ctx);
+    }
+
     @Override 
     public Object visitArrayType(ArrayTypeContext ctx) 
     { 

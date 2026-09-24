@@ -190,6 +190,19 @@ public class TypeDefinitions_P2 extends Semantics_P2
         return subrangeTypespec;
     }
 
+    Typespec_P2 hashtableType (HashtableTypeContext ctx) {
+        Typespec_P2 hashtabletypespec = new Typespec_P2(HASHTABLE);
+        Typespec_P2 keyType = (Typespec_P2) visit(ctx.indexType());
+        Typespec_P2 valueType = (Typespec_P2) visit(ctx.elmtType());
+//        ((HashtableInfo) info).keyType = keyType;
+//        ((HashTableInfo) info).valueType = valueType;
+        hashtabletypespec.setHashtableKeyType(keyType);
+        hashtabletypespec.setHashtableValueType(valueType);
+        ctx.typespec = hashtabletypespec;
+        return hashtabletypespec;
+    }
+
+
     Typespec_P2 arrayType(ArrayTypeContext ctx) 
     { 
         DimensionListContext dimListCtx = ctx.dimensionList();
