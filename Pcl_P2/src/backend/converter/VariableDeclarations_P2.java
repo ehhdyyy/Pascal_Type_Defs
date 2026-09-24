@@ -42,6 +42,8 @@ public class VariableDeclarations_P2 extends Converter_P2
             if (typeForm == HASHTABLE)
                 code.emit(" = new HashMap<>()");
 
+            if(typeForm == SET)
+                code.emit(" = new HashSet<>()");
             separator = ", ";
         }
 
@@ -126,7 +128,13 @@ public class VariableDeclarations_P2 extends Converter_P2
 
             case HASHTABLE:
                 return "HashMap<" + boxedJavaType(pascalType.getHashtableKeyType()) + ", " + boxedJavaType(pascalType.getHashtableValueType()) + ">";
-                
+            
+            case SET:
+                Typespec_P2 setBaseType = pascalType.getSetBaseType();
+
+                String elementTypeName = getSetElementTypeName(setBaseType);
+                return "Set<" + elementTypeName + ">";
+
             default: return "*unknown*";
         }
     }
@@ -143,5 +151,43 @@ public class VariableDeclarations_P2 extends Converter_P2
         if ("char".equals(name))    return "Character";
         if ("double".equals(name))  return "Double";
         return name;
+    }
+
+    private String getSetElementTypeName(Typespec_P2 pascalType)
+    {
+        Form form = pascalType.getForm();
+
+        if (form == Typespec_P2.Form.SUBRANGE)
+        {
+            return getSetElementTypeName(pascalType.baseType());
+        }
+
+        switch (form)
+        {
+            case SCALAR:
+                return ConvertPascalTypeName(pascalType.getIdentifier().getName());
+
+            case ENUMERATED:
+                return ConvertPascalTypeName(pascalType.getIdentifier().getName());
+            
+            default:
+                return "Object";
+        }
+    }
+    private String ConvertPascalTypeName(String pascalTypeName)
+    {
+        switch (pascalTypeName)
+        {
+            case "integer":
+                return "Integer";
+            case "char":
+                return "Character";
+            case "boolean":
+                return "Boolean";
+            case "real":
+                return "Double";
+            default:
+                return pascalTypeName;
+        }
     }
 }
