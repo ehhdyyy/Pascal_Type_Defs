@@ -15,7 +15,7 @@ VAR
     i1 : integerset;
     c1 : charset;
     b1 : booleanset;
-    Today: TDay;
+    Today: set of TDay;
 
     { Three proper unnamed set definitions }
     r1 : set of numbers;

@@ -10,7 +10,7 @@ public class TestSet
     private static Set<Integer> i1 = new HashSet<>();
     private static Set<Character> c1 = new HashSet<>();
     private static Set<Boolean> b1 = new HashSet<>();
-    private static TDay today;
+    private static Set<TDay> today = new HashSet<>();
     private static Set<Integer> r1 = new HashSet<>();
     private static Set<Character> r2 = new HashSet<>();
     private static Set<Boolean> r3 = new HashSet<>();
