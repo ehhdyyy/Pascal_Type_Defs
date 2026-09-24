@@ -142,21 +142,29 @@ public class VariableDeclarations_P2 extends Converter_P2
         switch (form)
         {
             case SCALAR:
-                String pascalTypeName = pascalType.getIdentifier().getName();
-                switch (pascalTypeName)
-                {
-                    case "boolean": return "Boolean";
-                    case "char":    return "Character";
-                    case "integer": return "Integer";
-                    case "real":    return "Double";    
-                    default:        return pascalTypeName;
-                }
+                return ConvertPascalTypeName(pascalType.getIdentifier().getName());
 
             case ENUMERATED:
-                return pascalType.baseType().getIdentifier().getName();
+                return ConvertPascalTypeName(pascalType.getIdentifier().getName());
             
             default:
                 return "Object";
+        }
+    }
+    private String ConvertPascalTypeName(String pascalTypeName)
+    {
+        switch (pascalTypeName)
+        {
+            case "integer":
+                return "Integer";
+            case "char":
+                return "Character";
+            case "boolean":
+                return "Boolean";
+            case "real":
+                return "Double";
+            default:
+                return pascalTypeName;
         }
     }
 }
