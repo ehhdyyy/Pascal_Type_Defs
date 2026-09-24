@@ -127,7 +127,8 @@ public class Semantics_P2 extends Pcl_P2BaseVisitor<Object>
     }
 
     @Override
-    public Object visitHashtableType(HashtableTypeContext ctx) {
+    public Object visitHashtableType(HashtableTypeContext ctx)
+    {
         return typeDefinitions.hashtableType(ctx);
     }
 

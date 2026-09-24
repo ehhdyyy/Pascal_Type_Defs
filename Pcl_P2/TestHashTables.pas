@@ -1,7 +1,6 @@
 PROGRAM TestHashTables;
 
 CONST
-    MINUSFIVE = -5;
     TEN = 10;
 
 TYPE
@@ -9,21 +8,20 @@ TYPE
     days = (MON, TUE, WED, THU, FRI, SAT, SUN);
     weekdays = MON..FRI;
 
+    { Three proper named hashtable definitions }
     ht1 = HASHTABLE <integer, boolean>;
-    ht2 = HASHTABLE <string, integer>;
-    ht3 = HASHTABLE <string, HASHTABLE<integer, boolean>>;
-    ht4 = HASHTABLE <greek, greek>;
-    ht5 = HASHTABLE <weekdays, string>;
-    ht6 = HASHTABLE <days, greek>;
+    ht2 = HASHTABLE <greek, integer>;
+    ht3 = HASHTABLE <char, HASHTABLE <boolean, real>>;
 
 VAR
     h1 : ht1;
     h2 : ht2;
     h3 : ht3;
 
-    uh1 : HASHTABLE <(JAN, FEB, MAR, APR), integer>;
-    uh2 : HASHTABLE <String, integer>;
-    uh3 : HASHTABLE <String, 1..4>;
-                
+    { Three proper unnamed hashtable definitions }
+    u1 : HASHTABLE <1..TEN, real>;
+    u2 : HASHTABLE <(RED, GREEN, BLUE), boolean>;
+    u3 : HASHTABLE <weekdays, greek>;
+
 BEGIN
 END.
