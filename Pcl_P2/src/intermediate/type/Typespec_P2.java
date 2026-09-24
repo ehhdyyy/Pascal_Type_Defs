@@ -39,9 +39,6 @@ public class Typespec_P2
     {
         private Typespec_P2 keyType;
         private Typespec_P2 valueType;
-        //TODO
-
-
     }
     
     private Form form;
