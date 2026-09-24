@@ -5,6 +5,7 @@ public class TestSet
     private static Set<Integer> i1;
     private static Set<Character> c1;
     private static Set<Boolean> b1;
+    private static Set<Integer> r1;
 
     public static void main(String[] args)
     {
