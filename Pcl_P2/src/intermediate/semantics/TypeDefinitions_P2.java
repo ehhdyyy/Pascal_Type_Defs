@@ -190,6 +190,26 @@ public class TypeDefinitions_P2 extends Semantics_P2
         return subrangeTypespec;
     }
 
+    Typespec_P2 hashtableType(HashtableTypeContext ctx)
+    {
+        Typespec_P2 hashtableTypespec = new Typespec_P2(HASHTABLE);
+        Typespec_P2 keyType = (Typespec_P2) visit(ctx.indexType());
+        Typespec_P2 valueType = (Typespec_P2) visit(ctx.elmtType());
+
+        // Assignment: hashtable keys must be ordinal.
+        if (!keyType.isOrdinal())
+        {
+            error.flag(INVALID_INDEX_TYPE, ctx.indexType());
+            keyType = Predefined.integerType;
+        }
+
+        hashtableTypespec.setHashtableKeyType(keyType);
+        hashtableTypespec.setHashtableValueType(valueType);
+        ctx.typespec = hashtableTypespec;
+        return hashtableTypespec;
+    }
+
+
     Typespec_P2 arrayType(ArrayTypeContext ctx) 
     { 
         DimensionListContext dimListCtx = ctx.dimensionList();

@@ -97,6 +97,7 @@ ordinalType           locals [ Typespec_P2 typespec = null ]
 structuredType        locals [ Typespec_P2 typespec = null ]
     : arrayType 
     | recordType
+    | hashtableType
     ;
 
 enumeratedType        locals [ Typespec_P2 typespec = null ] 
@@ -123,6 +124,11 @@ variableIdentifierList : identifier ( ',' identifier )* ;
     
 procedureAndFunctionsPart : /* empty */ ;
 
+//hashtableType locals [ Typespec_P2 typespec = null ]
+//    : HASHTABLE '[' dimensionList ']' OF elmtType /*TODO*/;
+
+hashtableType locals [Typespec_P2 typespec = null] : HASHTABLE '<' indexType ',' elmtType '>' ;
+
 PROGRAM   : P R O G R A M ;
 CONST     : C O N S T ;
 TYPE      : T Y P E ;
@@ -135,6 +141,7 @@ BEGIN     : B E G I N ;
 END       : E N D ;
 TRUE      : T R U E ;
 FALSE     : F A L S E ;
+HASHTABLE : H A S H T A B L E;
 
 IDENTIFIER : LETTER ( LETTER | DIGIT )*;
 INTEGER    : DIGITS ;
