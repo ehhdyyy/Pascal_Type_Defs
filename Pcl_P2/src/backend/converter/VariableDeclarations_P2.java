@@ -42,6 +42,8 @@ public class VariableDeclarations_P2 extends Converter_P2
             if (typeForm == HASHTABLE)
                 code.emit(" = new HashMap<>()");
 
+            if(typeForm == SET)
+                code.emit(" = new HashSet<>()");
             separator = ", ";
         }
 

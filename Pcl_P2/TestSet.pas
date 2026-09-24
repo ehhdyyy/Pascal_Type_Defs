@@ -8,12 +8,14 @@ TYPE
     charset = set of char;
     booleanset = set of boolean;
 
-VAR
+    TDay = (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
 
+VAR
     
     i1 : integerset;
     c1 : charset;
     b1 : booleanset;
+    Today: TDay;
 
     { Three proper unnamed set definitions }
     r1 : set of numbers;
